@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Console"""
 import cmd
+from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,10 +20,15 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ Creates a new instance of BaseModel, saves it (to the JSON file) and
         prints the id."""
-        if len(arg) < 2:
+        if len(arg) < 1:
             print ("** class name missing **")
+        elif arg != "BaseModel":
+            print ("** class doesn't exist **")
         else:
-            return None
+            objarg = BaseModel()
+            storage.new(objarg)
+            storage.save
+            print (BaseModel.id)
     def do_show(self, arg):
         """Prints the string representation of an
         instance based on the class name and id"""
