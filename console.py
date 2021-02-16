@@ -85,25 +85,33 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all
         instances based or not on the class name"""
         args = arg.split()
+        new_list = []
         if len(args) > 0:
             if args[0] in Dict:
-                pass
+                for i in storage.all():
+                    args = str(storage.all()[i]).split(" ")
+                    if args[0] == "[" + arg + "]":
+                        new_list.append(str(storage.all()[i]))
+                print(new_list)
             else:
                 print("** class doesn't exist **")
-        if arg in Dict:
-            pass
         else:
-            print("** class doesn't exist **")
+            for i in storage.all():
+                new_list.append(str(storage.all()[i]))
+            print(new_list)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
-        if len(arg) < 1:
+        args = arg.split()
+        if len(args) < 1:
             print("** class name missing **")
-        elif len(arg) < 2:
+        elif len(args) < 2:
             print("** instance id missing **")
-        elif len(arg) < 3:
+        elif len(args) < 3:
             print("** attribute name missing **")
-        elif arg in Dict:
+        elif len(args) < 4:
+            print("** value missing **")
+        elif args in Dict:
             pass
         else:
             print("** class doesn't exist **")
