@@ -111,8 +111,21 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         elif len(args) < 4:
             print("** value missing **")
-        elif args in Dict:
-            pass
+        elif args[0] in Dict:
+            with open("file.json") as file:
+                data = json.load(file)
+            key = args[0] + "." + args[1]
+            if key in data:
+                if arg[2] in key:
+                    data[key][args[2]] = args[3]
+                    with open("file.json", "w") as file:
+                        data = json.dump(data, file)
+                else:
+                    data.update(args[2] + ":" + args[3])
+                    with open("file.json", "w") as file:
+                        data = json.dump(data, file)
+            else:
+                print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
