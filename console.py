@@ -55,6 +55,8 @@ class HBNBCommand(cmd.Cmd):
                 data = json.load(file)
             key = args[0] + "." + args[1]
             if key in data:
+                print("[" + args[0] + "]", end=" ")
+                print("(" + args[1] + ")", end=" ")
                 print(data[args[0] + "." + args[1]])
             else:
                 print("** no instance found **")
