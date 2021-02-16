@@ -53,8 +53,11 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] in Dict:
             with open("file.json") as file:
                 data = json.load(file)
-            # if statment to check for id here
-            print(data[args[0] + "." + args[1]])
+            key = args[0] + "." + args[1]
+            if key in data:
+                print(data[args[0] + "." + args[1]])
+            else:
+                print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
@@ -69,10 +72,12 @@ class HBNBCommand(cmd.Cmd):
             with open("file.json") as file:
                 data = json.load(file)
             key = args[0] + "." + args[1]
-            # if statement for id here
-            data.pop(key, None)
-            with open("file.json", "w") as file:
-                data = json.dump(data, file)
+            if key in data:
+                data.pop(key, None)
+                with open("file.json", "w") as file:
+                    data = json.dump(data, file)
+            else:
+                print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
