@@ -140,7 +140,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 1:
             command = args[1].split()
             if command[0] == "all()":
-                testline = ("{} {}".format(command[0], args[0]))
+                cmd = command[0][slice(0, 3)]
+                testline = ("{} {}".format(cmd, args[0]))
                 self.onecmd(testline)
             elif "count()" in command[0]:
                 count = 0
