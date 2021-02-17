@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             if command[0] == "all":
                 testline = ("{} {}".format(command[0], args[0]))
                 self.onecmd(testline)
-            elif command[0] == "count":
+            elif "count()" in command[0]:
                 count = 0
                 if args[0] in Dict:
                     for i in storage.all():
