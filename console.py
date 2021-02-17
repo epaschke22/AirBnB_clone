@@ -114,18 +114,19 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
-        elif len(args) < 2:
-            print("** instance id missing **")
-        elif len(args) < 3:
-            print("** attribute name missing **")
-        elif len(args) < 4:
-            print("** value missing **")
         elif args[0] in Dict:
-            if args[3][0] == "\"":
-                value = args[3][slice(1, -1)]
+            if len(args) < 2:
+                print("** instance id missing **")
+            elif len(args) < 3:
+                print("** attribute name missing **")
+            elif len(args) < 4:
+                print("** value missing **")
             else:
-                value = args[3]
-            for i in storage.all():
+                if args[3][0] == "\"":
+                    value = args[3][slice(1, -1)]
+                else:
+                    value = args[3]
+                for i in storage.all():
                     arggs = str(storage.all()[i]).split()
                     cid = arggs[1][slice(1, -1)]
                     if cid == args[1]:
@@ -133,8 +134,8 @@ class HBNBCommand(cmd.Cmd):
                         storage.save()
                         tf = "true"
                         break
-            if tf == "false":
-                print("** no instance found **")
+                if tf == "false":
+                    print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
