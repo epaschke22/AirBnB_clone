@@ -45,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Prints the string representation of an
         instance based on the class name and id"""
+        tf = "false"
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
@@ -52,20 +53,22 @@ class HBNBCommand(cmd.Cmd):
             if len(args) < 2:
                 print("** instance id missing **")
             else:
-                with open("file.json") as file:
-                    data = json.load(file)
-                    key = args[0] + "." + args[1]
-                if key in data:
-                    print("[" + args[0] + "]", end=" ")
-                    print("(" + args[1] + ")", end=" ")
-                    print(data[args[0] + "." + args[1]])
-                else:
+                for i in storage.all():
+                    arggs = str(storage.all()[i]).split()
+                    cid = arggs[1][slice(1, -1)]
+                    if cid == args[1]:
+                        print("{}".format(storage.all()[i]))
+                        tf = "true"
+                        storage.save()
+                        break
+                if tf == "false":
                     print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
+        tf = "false"
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
@@ -73,14 +76,16 @@ class HBNBCommand(cmd.Cmd):
             if len(args) < 2:
                 print("** instance id missing **")
             else:
-                with open("file.json") as file:
-                    data = json.load(file)
                 key = args[0] + "." + args[1]
-                if key in data:
-                    data.pop(key, None)
-                    with open("file.json", "w") as file:
-                        data = json.dump(data, file)
-                else:
+                for i in storage.all():
+                    arggs = str(storage.all()[i]).split()
+                    cid = arggs[1][slice(1, -1)]
+                    if cid == args[1]:
+                        storage.all().pop(key, None)
+                        tf = "true"
+                        storage.save()
+                        break
+                if tf == "false":
                     print("** no instance found **")
         else:
             print("** class doesn't exist **")
@@ -116,19 +121,16 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         elif args[0] in Dict:
-            with open("file.json") as file:
-                data = json.load(file)
-            key = args[0] + "." + args[1]
-            if key in data:
-                if arg[2] in key:
-                    data[key][args[2]] = args[3]
-                    with open("file.json", "w") as file:
-                        data = json.dump(data, file)
-                else:
-                    data.update(args[2] + ":" + args[3])
-                    with open("file.json", "w") as file:
-                        data = json.dump(data, file)
-            else:
+            d1 = ("{}: \"{}\"".format(args[2], args[3]))
+            for i in storage.all():
+                    arggs = str(storage.all()[i]).split()
+                    cid = arggs[1][slice(1, -1)]
+                    if cid == args[1]:
+                        setattr(storage.all()[i], args[2], str(args[3]))
+                        storage.save()
+                        tf = "true"
+                        break
+            if tf == "false":
                 print("** no instance found **")
         else:
             print("** class doesn't exist **")
@@ -163,11 +165,15 @@ class HBNBCommand(cmd.Cmd):
                 self.onecmd(testline)
             elif "update" in command[0]:
                 cmd = command[0][slice(0, 6)]
-                newargs = args[1].split(" ")
+                if len(args) > 0:
+                    newargs = args[1].split(" ")
                 cid = newargs[0][slice(7, -1)]
-                name = newargs[1][slice(0, -1)]
-                value = newargs[2][slice(0, -1)]
-                testline = ("{} {} {} {} {}".format(cmd, args[0], cid, name, value))
+                if len(newargs) >= 1:
+                    name = newargs[1][slice(0, -1)]
+                if len(newargs) >= 2:
+                    value = newargs[2][slice(0, -1)]
+                testline = ("{} {} {} {} {}".format(cmd, args[0], cid, name,
+                                                    value))
                 self.onecmd(testline)
 
     def emptyline(self):
