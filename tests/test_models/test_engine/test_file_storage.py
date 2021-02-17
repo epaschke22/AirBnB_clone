@@ -15,11 +15,11 @@ class TestFileStorage(unittest.TestCase):
         FileStorage._FileStorage__objects = {}
 
     def test_check_attributes(self):
-        checks if attributes are correct
+        """checks if attributes are correct"""
         test_storage = FileStorage()
         self.assertEqual(type(test_storage._FileStorage__objects), dict)
         self.assertEqual(type(test_storage._FileStorage__file_path), str)
-
+        
     def test_filestroage_all(self):
         """creating and testing objects dictionary"""
         self.maxDiff = None
