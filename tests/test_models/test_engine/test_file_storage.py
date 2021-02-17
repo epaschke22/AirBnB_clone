@@ -13,13 +13,13 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """runs before each test"""
         FileStorage._FileStorage__objects = {}
-        """with open(FileStorage._FileStorage__file_path, 'w', encoding="utf-8") as file:
-            json.dump(output, file)"""
-    """def test_check_attributes(self):
-        checks if attributes are correct
+
+    def test_check_attributes(self):
+        """checks if attributes are correct"""
         test_storage = FileStorage()
         self.assertEqual(type(test_storage._FileStorage__objects), dict)
-        self.assertEqual(type(test_storage._FileStorage__file_path), str)"""
+        self.assertEqual(type(test_storage._FileStorage__file_path), str)
+        
     def test_filestroage_all(self):
         """creating and testing objects dictionary"""
         self.maxDiff = None
