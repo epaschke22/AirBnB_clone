@@ -132,6 +132,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def default(self, line):
+        """Checks what is input for command"""
         args = line.split(".")
         newline = ""
         if len(args) > 1:
@@ -145,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
                     for i in storage.all():
                         arggs = str(storage.all()[i]).split(" ")
                         if arggs[0] == "[" + args[0] + "]":
-                            count+= 1
+                            count += 1
                     print(count)
             elif "show" in command[0]:
                 cid = command[0][slice(6, -2)]
