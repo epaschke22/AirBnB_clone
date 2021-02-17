@@ -161,6 +161,14 @@ class HBNBCommand(cmd.Cmd):
                 cmd = command[0][slice(0, 7)]
                 testline = ("{} {} {}".format(cmd, args[0], cid))
                 self.onecmd(testline)
+            elif "update" in command[0]:
+                cmd = command[0][slice(0, 6)]
+                newargs = args[1].split(" ")
+                cid = newargs[0][slice(7, -1)]
+                name = newargs[1][slice(0, -1)]
+                value = newargs[2][slice(0, -1)]
+                testline = ("{} {} {} {} {}".format(cmd, args[0], cid, name, value))
+                self.onecmd(testline)
 
     def emptyline(self):
         return None
