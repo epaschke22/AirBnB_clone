@@ -13,8 +13,8 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """runs before each test"""
         FileStorage._FileStorage__objects = {}
-        with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
-            json.dump(output, file)
+        with open(FileStorage._FileStorage__file_path, 'w') as file:
+            file.write("")
 
     def test_check_attributes(self):
         """checks if attributes are correct"""
