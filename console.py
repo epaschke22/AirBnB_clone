@@ -48,18 +48,19 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
-        elif len(args) < 2:
-            print("** instance id missing **")
         elif args[0] in Dict:
-            with open("file.json") as file:
-                data = json.load(file)
-            key = args[0] + "." + args[1]
-            if key in data:
-                print("[" + args[0] + "]", end=" ")
-                print("(" + args[1] + ")", end=" ")
-                print(data[args[0] + "." + args[1]])
+            if len(args) < 2:
+                print("** instance id missing **")
             else:
-                print("** no instance found **")
+                with open("file.json") as file:
+                    data = json.load(file)
+                    key = args[0] + "." + args[1]
+                if key in data:
+                    print("[" + args[0] + "]", end=" ")
+                    print("(" + args[1] + ")", end=" ")
+                    print(data[args[0] + "." + args[1]])
+                else:
+                    print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
@@ -68,18 +69,19 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
-        elif len(args) < 2:
-            print("** instance id missing **")
         elif args[0] in Dict:
-            with open("file.json") as file:
-                data = json.load(file)
-            key = args[0] + "." + args[1]
-            if key in data:
-                data.pop(key, None)
-                with open("file.json", "w") as file:
-                    data = json.dump(data, file)
+            if len(args) < 2:
+                print("** instance id missing **")
             else:
-                print("** no instance found **")
+                with open("file.json") as file:
+                    data = json.load(file)
+                key = args[0] + "." + args[1]
+                if key in data:
+                    data.pop(key, None)
+                    with open("file.json", "w") as file:
+                        data = json.dump(data, file)
+                else:
+                    print("** no instance found **")
         else:
             print("** class doesn't exist **")
 
