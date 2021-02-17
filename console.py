@@ -131,6 +131,33 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def default(self, line):
+        args = line.split(".")
+        newline = ""
+        if len(args) > 1:
+            command = args[1].split()
+            if command[0] == "all":
+                testline = ("{} {}".format(command[0], args[0]))
+                self.onecmd(testline)
+            elif command[0] == "count":
+                count = 0
+                if args[0] in Dict:
+                    for i in storage.all():
+                        arggs = str(storage.all()[i]).split(" ")
+                        if arggs[0] == "[" + args[0] + "]":
+                            count+= 1
+                    print(count)
+            elif "show" in command[0]:
+                cid = command[0][slice(6, -2)]
+                cmd = command[0][slice(0, 4)]
+                testline = ("{} {} {}".format(cmd, args[0], cid))
+                self.onecmd(testline)
+            elif "destroy" in command[0]:
+                cid = command[0][slice(9, -2)]
+                cmd = command[0][slice(0, 7)]
+                testline = ("{} {} {}".format(cmd, args[0], cid))
+                self.onecmd(testline)
+
     def emptyline(self):
         return None
 
