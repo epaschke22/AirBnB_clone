@@ -149,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
                             count += 1
                     print(count)
             elif "show" in command[0]:
-                cid = command[0][slice(6, -2)]
+                cid = command[0][slice(5, -1)]
                 cmd = command[0][slice(0, 4)]
                 testline = ("{} {} {}".format(cmd, args[0], cid))
                 self.onecmd(testline)
