@@ -121,12 +121,15 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         elif args[0] in Dict:
-            d1 = ("{}: \"{}\"".format(args[2], args[3]))
+            if args[3][0] == "\"":
+                value = args[3][slice(1, -1)]
+            else:
+                value = args[3]
             for i in storage.all():
                     arggs = str(storage.all()[i]).split()
                     cid = arggs[1][slice(1, -1)]
                     if cid == args[1]:
-                        setattr(storage.all()[i], args[2], str(args[3]))
+                        setattr(storage.all()[i], args[2], str(value))
                         storage.save()
                         tf = "true"
                         break
