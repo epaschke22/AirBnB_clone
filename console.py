@@ -56,10 +56,10 @@ class HBNBCommand(cmd.Cmd):
                 for i in storage.all():
                     arggs = str(storage.all()[i]).split()
                     cid = arggs[1][slice(1, -1)]
-                    if cid == args[1]:
+                    cname = arggs[0][slice(1, -1)]
+                    if cid == args[1] and cname == args[0]:
                         print("{}".format(storage.all()[i]))
                         tf = "true"
-                        storage.save()
                         break
                 if tf == "false":
                     print("** no instance found **")
@@ -80,7 +80,8 @@ class HBNBCommand(cmd.Cmd):
                 for i in storage.all():
                     arggs = str(storage.all()[i]).split()
                     cid = arggs[1][slice(1, -1)]
-                    if cid == args[1]:
+                    cname = arggs[0][slice(1, -1)]
+                    if cid == args[1] and cname == args[0]:
                         storage.all().pop(key, None)
                         tf = "true"
                         storage.save()
@@ -130,7 +131,8 @@ class HBNBCommand(cmd.Cmd):
                 for i in storage.all():
                     arggs = str(storage.all()[i]).split()
                     cid = arggs[1][slice(1, -1)]
-                    if cid == args[1]:
+                    cname = arggs[0][slice(1, -1)]
+                    if cid == args[1] and cname == args[0]:
                         setattr(storage.all()[i], args[2], str(value))
                         storage.save()
                         tf = "true"
