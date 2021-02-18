@@ -12,7 +12,11 @@ dictionary of objects.
 you start with ./console to initiate the command interpreter then from here you
 are able to use the following commands to create and manipulate dictionaries.
 
-**Commands**
+| Commands | Descriptions |
+| ----------- | ----------- |
+| Test | Test_Disc |
+| Test_2 | Test_Disc 2|
+
 - create {ClassName}
 *Returns created objects id*
 - show {ClassName} {id} or {ClassName}.show({id})
