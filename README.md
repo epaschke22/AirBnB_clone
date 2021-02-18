@@ -14,16 +14,35 @@ are able to use the following commands to create and manipulate dictionaries.
 
 | Commands | Descriptions |
 | ----------- | ----------- |
-| Test | Test_Disc |
-| Test_2 | Test_Disc 2|
+| create {ClassName} | *Returns created objects id* |
+| show {ClassName} {id} | *Shows what is in the object you created*|
+| all {ClassName} | *Displays all objects with given class name (Class name is not required)* |
+| destroy {ClassName} {id} | *Destroys an object with the given ClassName and id* |
+| update {ClassName} {id} {attribute_name} {attribute_value} | *Updates object with given ClassName and id with the given attribute_name and attribute_value* |
 
-- create {ClassName}
-*Returns created objects id*
-- show {ClassName} {id} or {ClassName}.show({id})
-*Shows what is in the class you created*
-- all {ClassName} or {ClassName}.all()
-*The class name is optional and will show every object with the ClassName*
-- destroy {ClassName} {id} or {ClassName}.destroy({id})
-*Destroys an object with the given ClassName and id*
-- update {ClassName} {id} {key_name} {key_value} or {ClassName}.update({id}, {key_name}, {key_value})
-*Updated given ClassName and id with the given key_name and key_value*
+## Examples
+```
+(hbnb)create BaseModel
+bd2003b0-6a17-4551-a588-bc9fc3e0df4b
+(hbnb)show BaseModel bd2003b0-6a17-4551-a588-bc9fc3e0df4b
+[BaseModel] (bd2003b0-6a17-4551-a588-bc9fc3e0df4b) {'updated_at': datetime.datetime(2021, 2, 18, 4, 24, 19, 704992), 'created_at': datetime.datetime(2021, 2, 18, 4, 24, 19, 704977), 'id': 'bd2003b0-6a17-4551-a588-bc9fc3e0df4b'}
+(hbnb)update BaseModel bd2003b0-6a17-4551-a588-bc9fc3e0df4b first_name Bob
+(hbnb)show BaseModel bd2003b0-6a17-4551-a588-bc9fc3e0df4b
+[BaseModel] (bd2003b0-6a17-4551-a588-bc9fc3e0df4b) {'updated_at': datetime.datetime(2021, 2, 18, 4, 24, 19, 704992), 'created_at': datetime.datetime(2021, 2, 18, 4, 24, 19, 704977), 'first_name': 'Bob', 'id': 'bd2003b0-6a17-4551-a588-bc9fc3e0df4b'}
+(hbnb)destroy BaseModel bd2003b0-6a17-4551-a588-bc9fc3e0df4b
+(hbnb)show BaseModel bd2003b0-6a17-4551-a588-bc9fc3e0df4b
+** no instance found **
+```
+
+### Extra
+**Command Aliases**
+| Commands | Alias |
+| ----------- | ----------- |
+| show | {ClassName}.show({id}) |
+| all | {ClassName}.all() |
+| destroy | {ClassName}.destroy({id}) |
+| update | {ClassName}.update({id}, {attribute_name}, {attribute_value})|
+**Other Commands**
+| Commands | Descriptions |
+| ----------- | ----------- |
+| {ClassName}.count() | counts number of objects with given class name|
