@@ -1,15 +1,16 @@
 # AirBnB_clone
 
-The AirBnB project allows us to create and manipulate a dictonary of objects
-that we are able to push and update to a json file. Some of the data in this
-file includes date/time created and updated, its very own uuid, and much more
+The AirBnB project allows us to create and manipulate a dictionary of objects
+that we are able to push and update to a JSON file. Some of the data in this
+file include date/time created and updated, its very own UUID, and much more
 
-The command interpreter includes the commands create, show, all,
-destroy, update, and count. All these command manipulate a .json file through a
+The command interpreter includes the commands create, show, all, destroy,
+update, and count. All these commands manipulate a .json file through a
 dictionary of objects.
 
 **How to use the command interpreter**
-you start with ./console to initiate the command interpreter then from here you
+
+You start with ./console to initiate the command interpreter then from here you
 are able to use the following commands to create and manipulate dictionaries.
 
 | Commands | Descriptions |
@@ -35,14 +36,18 @@ bd2003b0-6a17-4551-a588-bc9fc3e0df4b
 ```
 
 ### Extra
+
 **Command Aliases**
+
 | Commands | Alias |
 | ----------- | ----------- |
 | show | {ClassName}.show({id}) |
 | all | {ClassName}.all() |
 | destroy | {ClassName}.destroy({id}) |
 | update | {ClassName}.update({id}, {attribute_name}, {attribute_value})|
+
 **Other Commands**
+
 | Commands | Descriptions |
 | ----------- | ----------- |
 | {ClassName}.count() | counts number of objects with given class name|
