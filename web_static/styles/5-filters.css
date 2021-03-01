@@ -19,6 +19,10 @@ button {
     float: right;
 }
 
+button:hover {
+    opacity: 90%;
+}
+
 .filters div {
     vertical-align: center;
     height: 100%;
